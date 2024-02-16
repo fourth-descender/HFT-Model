@@ -18,6 +18,7 @@ namespace model::formula
         double k;       // intensity
         double sigma;   // volatility
         double gamma;   // risk aversion
+        double A;       // likelihood of arrival
         double T = 1;   // time
     };
 
