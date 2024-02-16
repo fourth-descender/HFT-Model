@@ -16,7 +16,16 @@ class Simulation
         );
 
         // simulate method performs one step of the simulation.
-        void simulate();
+        void simulate(double t);
+
+        // get methods.
+        double getBidPrice()         { return bid; }
+        double getAskPrice()         { return ask; }
+        double getSpread()           { return spread; }
+        double getStockPrice()       { return price; }
+        double getReservationPrice() { return reservationPrice; }
+        double getQuantity()         { return quantity; }
+        double getWealth()           { return wealth; }
 
     private:
         double          price;              // current stock price.

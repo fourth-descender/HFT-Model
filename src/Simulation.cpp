@@ -15,12 +15,12 @@ Simulation::Simulation(
       spread(0) 
 {}
 
-void Simulation::simulate()
+void Simulation::simulate(double t)
 {
-    price = model::formula::getNewStockPrice(*p, price, 0);
+    price = model::formula::getNewStockPrice(*p, price, t);
 
-    reservationPrice = model::formula::getNewReservationPrice(*p, price, quantity, 0);
-    spread           = model::formula::getNewSpread(*p, 0);
+    reservationPrice = model::formula::getNewReservationPrice(*p, price, quantity, t);
+    spread           = model::formula::getNewSpread(*p, t);
 
     bid = model::formula::getNewBidPrice(reservationPrice, spread);
     ask = model::formula::getNewAskPrice(reservationPrice, spread);
