@@ -1,36 +1,37 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-// Standard library headers
+// standard library headers
 #include <random>
 #include <cmath>
 
-// Model namespace
+// model namespace
 namespace model::formula 
 {
-    // Random number generation.
+    // random number generation
     extern std::random_device rd;
     extern std::mt19937 gen;
 
-    // Parameters for the model.
     struct Parameters
     {
         double k;       // intensity
         double sigma;   // volatility
         double gamma;   // risk aversion
         double A;       // likelihood of arrival
-        double T = 1;   // time
+        double T = 1;   // terminal time
+        double S0;      // initial stock price
+        double Q0;      // initial quantity
+        double dt;      // time step
     };
 
-    // Alias for const reference to Parameters.
-    using parameter = const Parameters&;
+    using parameters = const Parameters;
 
-    // Model functions.
-    double getNewStockPrice(parameter p, double price, double t);
-    double getNewReservationPrice(parameter p, double price, double quantity, double t);
-    double getNewSpread(parameter p, double t);
-    double getNewBidPrice(double reservationPrice, double spread);
-    double getNewAskPrice(double reservationPrice, double spread);
+    // Model functions
+    double getNewStockPrice      (const parameters& p, double price, double t);
+    double getNewReservationPrice(const parameters& p, double price, double quantity, double t);
+    double getNewSpread          (const parameters& p, double t);
+    double getNewBidPrice        (double reservationPrice, double spread);
+    double getNewAskPrice        (double reservationPrice, double spread);
 }
 
 #endif
