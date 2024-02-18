@@ -11,8 +11,7 @@ class Simulator
     public:
         Simulator(
             const model::formula::parameters& p, 
-            PoissonArrival& bids,
-            PoissonArrival& asks,
+            PoissonArrival& arrivals,
             double numberOfSimulations
         );
 
@@ -33,8 +32,7 @@ class Simulator
         void commit(Simulation& s);
 
         parameters *p;
-        PoissonArrival *bids;
-        PoissonArrival *asks;
+        PoissonArrival *arrivals;
         double numberOfSimulations;
         double numberOfSteps;
         std::vector<double> bidPrices;

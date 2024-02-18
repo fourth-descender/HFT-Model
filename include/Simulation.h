@@ -11,8 +11,7 @@ class Simulation
     public:
         Simulation(
             const parameters& p, 
-            PoissonArrival& bids,
-            PoissonArrival& asks
+            PoissonArrival& arrivals
         );
 
         // simulate method performs one step of the simulation.
@@ -36,8 +35,8 @@ class Simulation
         double          reservationPrice;   // current reservation price.
         double          spread;             // current spread.
         parameters*     p;                  // parameters of the simulation.
-        PoissonArrival* bids;
-        PoissonArrival* asks;
+        PoissonArrival* bids;               // poisson arrival for bids.
+        PoissonArrival* asks;               // poisson arrival for asks.
 };
 
 #endif

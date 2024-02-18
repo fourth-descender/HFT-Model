@@ -2,12 +2,11 @@
 
 Simulation::Simulation(
     const parameters& p, 
-    PoissonArrival& bids,
-    PoissonArrival& asks
+    PoissonArrival& arrivals
 )
     : p(&p), 
-      bids(&bids), 
-      asks(&asks), 
+      bids(&arrivals), 
+      asks(&arrivals), 
       price(p.S0), 
       quantity(0), 
       wealth(0),

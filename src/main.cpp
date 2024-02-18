@@ -20,11 +20,10 @@ int main()
         .Q0 = 0.0
     };
 
-    // the two symmetric poisson arrival processes.
-    PoissonArrival bids(p.A, p.k);
-    PoissonArrival asks(p.A, p.k);
+    // simulates order arrivals.
+    PoissonArrival arrivals(p.A, p.k);
 
-    Simulator s(p, bids, asks, NUMBER_OF_SIMULATIONS);
+    Simulator s(p, arrivals, NUMBER_OF_SIMULATIONS);
     s.run();
 
     std::vector<double> bidPrices         = s.getBidPrices();

@@ -2,13 +2,11 @@
 
 Simulator::Simulator(
     const model::formula::parameters& p, 
-    PoissonArrival& bids,
-    PoissonArrival& asks,
+    PoissonArrival& arrivals,
     double numberOfSimulations
 )
     : p(&p), 
-      bids(&bids), 
-      asks(&asks), 
+      arrivals(&arrivals),
       numberOfSimulations(numberOfSimulations), 
       numberOfSteps(p.N) 
 {}
@@ -24,7 +22,7 @@ void Simulator::run()
 // perform a single simulation.
 void Simulator::simulate()
 {
-    Simulation s(*p, *bids, *asks);
+    Simulation s(*p, *arrivals);
 
     // simulate the simulation for the number of steps provided.
     for (int j = 1; j <= numberOfSteps; j++)
