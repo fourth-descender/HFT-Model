@@ -13,12 +13,12 @@ class Simulator
             const model::formula::parameters& p, 
             PoissonArrival& bids,
             PoissonArrival& asks,
-            double numberOfSimulations,
-            double numberOfSteps
+            double numberOfSimulations
         );
 
         void run();
 
+        // getter methods.
         std::vector<double> getBidPrices();
         std::vector<double> getAskPrices();
         std::vector<double> getSpreads();
@@ -26,8 +26,12 @@ class Simulator
         std::vector<double> getReservationPrices();
         std::vector<double> getQuantities();
         std::vector<double> getWealths();
+        std::vector<double> getProfits();
 
     private:
+        void simulate();
+        void commit(Simulation& s);
+
         parameters *p;
         PoissonArrival *bids;
         PoissonArrival *asks;
@@ -40,6 +44,7 @@ class Simulator
         std::vector<double> reservationPrices;
         std::vector<double> quantities;
         std::vector<double> wealths;
+        std::vector<double> profits;
 };
 
 #endif

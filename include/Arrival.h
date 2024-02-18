@@ -22,7 +22,7 @@ class PoissonArrival
         double                      A;
         std::random_device          rd;
         std::mt19937                gen;
-        std::uniform_real_distribution<int> d;
+        std::uniform_real_distribution<double> d;
 };
 
 #endif

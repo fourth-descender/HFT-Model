@@ -18,10 +18,11 @@ namespace model::formula
         double sigma;   // volatility
         double gamma;   // risk aversion
         double A;       // likelihood of arrival
-        double T = 1;   // terminal time
+        double T;       // terminal time
         double S0;      // initial stock price
         double Q0;      // initial quantity
         double dt;      // time step
+        double N;       // number of time steps
     };
 
     using parameters = const Parameters;

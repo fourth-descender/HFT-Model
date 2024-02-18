@@ -7,9 +7,13 @@ namespace model::formula
     
     double getNewStockPrice(const parameters& p, double price, double t)
     {
-        std::normal_distribution<double> d(0, 1); // sampled for disturbance.
-        return price * exp((p.gamma - 0.5 * p.sigma * p.sigma) * (p.T - t) 
-                           + p.sigma * sqrt(p.T - t) * d(gen));
+        // discretization of the geometric brownian motion.
+        // S_{t + delta_t} = S_t + delta_S_t = S_t + sigma * dW_t
+        // dW_t can be approximated by a normal random variable,
+        // with mean 0 and variance delta_t, as it is normally distributed.
+        // hence, S_{t + delta_t} = S_t + sigma * N(0, delta_t).
+        std::normal_distribution<double> d(0, 1);
+        return price + p.sigma * (d(gen) * sqrt(p.dt));
     }
 
     double getNewReservationPrice(const parameters& p, double price, double quantity, double t)
