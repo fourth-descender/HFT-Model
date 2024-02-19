@@ -1,5 +1,6 @@
 #include <Simulator.h>
 #include <iostream>
+#include <fstream>
 
 #define TERMINAL_TIME 1.0
 #define NUMBER_OF_SIMULATIONS 1000
@@ -52,4 +53,14 @@ int main()
 
     double stdDevQuantity = std::sqrt(std::inner_product(quantities.begin(), quantities.end(), quantities.begin(), 0.0) / quantities.size() - averageQuantity * averageQuantity);
     std::cout << "Standard deviation of quantity: " << stdDevQuantity << std::endl;
+
+    std::ofstream file("output.csv");
+    file << "BidPrices,AskPrices,StockPrices\n";
+
+    for (int i = 0; i < p.N; i++)
+    {
+        file << bidPrices[i] << "," << askPrices[i] << "," << stockPrices[i] << "\n";
+    }
+
+    file.close();
 }
