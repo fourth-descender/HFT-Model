@@ -1,5 +1,4 @@
-# High-Frequency Trading Model in a Limit Order Book Environment
-
+# Implementation of Avellaneda and Stoikov's High-Frequency Trading Model in a Limit Order Book Context
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
