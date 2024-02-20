@@ -48,11 +48,11 @@ void Simulator::commit(Simulation& s)
 }
 
 // getter methods.
-std::vector<double> Simulator::getBidPrices()         { return bidPrices; }
-std::vector<double> Simulator::getAskPrices()         { return askPrices; }
-std::vector<double> Simulator::getSpreads()           { return spreads; }
-std::vector<double> Simulator::getStockPrices()       { return stockPrices; }
-std::vector<double> Simulator::getReservationPrices() { return reservationPrices; }
-std::vector<double> Simulator::getQuantities()        { return quantities; }
-std::vector<double> Simulator::getWealths()           { return wealths; }
-std::vector<double> Simulator::getProfits()           { return profits; }
+std::vector<double> Simulator::getBidPrices() const         { return bidPrices; }
+std::vector<double> Simulator::getAskPrices() const         { return askPrices; }
+std::vector<double> Simulator::getSpreads() const           { return spreads; }
+std::vector<double> Simulator::getStockPrices() const       { return stockPrices; }
+std::vector<double> Simulator::getReservationPrices() const { return reservationPrices; }
+std::vector<double> Simulator::getQuantities() const        { return quantities; }
+std::vector<double> Simulator::getWealths() const           { return wealths; }
+std::vector<double> Simulator::getProfits() const           { return profits; }

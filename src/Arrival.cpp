@@ -1,8 +1,8 @@
 #include <Arrival.h>
 
-PoissonArrival::PoissonArrival(double A, double k)
-    : A(A), 
-      k(k), 
+PoissonArrival::PoissonArrival(parameters& p)
+    : A(p.A), 
+      k(p.k), 
       gen(rd()), 
       d(0, 1) 
 {}

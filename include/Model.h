@@ -35,4 +35,6 @@ namespace model::formula
     double getNewAskPrice        (double reservationPrice, double spread);
 }
 
+using parameters = const model::formula::Parameters;
+
 #endif

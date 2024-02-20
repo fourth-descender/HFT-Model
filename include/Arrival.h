@@ -3,14 +3,12 @@
 
 #include <random>
 #include <cmath>
+#include <Model.h>
 
 class PoissonArrival
 {
     public:
-        PoissonArrival(
-            double A,       // likelihood of arrival.
-            double k        // intensity of arrival.
-        );
+        PoissonArrival(parameters& p);
 
         bool arrives(
             double delta,   // gap between stock price and bid/ask price.
@@ -18,8 +16,8 @@ class PoissonArrival
         );
 
     private:
-        double                      k;
-        double                      A;
+        double                      k;  // intensity of arrival.
+        double                      A;  // likelihood of arrival.
         std::random_device          rd;
         std::mt19937                gen;
         std::uniform_real_distribution<double> d;

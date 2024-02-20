@@ -4,8 +4,6 @@
 #include <Model.h>
 #include <Arrival.h>
 
-using parameters = const model::formula::Parameters;
-
 class Simulation
 {
     public:
@@ -18,13 +16,13 @@ class Simulation
         void simulate(double t);
 
         // get methods.
-        double getBidPrice()         { return bid; }
-        double getAskPrice()         { return ask; }
-        double getSpread()           { return spread; }
-        double getStockPrice()       { return price; }
-        double getReservationPrice() { return reservationPrice; }
-        double getQuantity()         { return quantity; }
-        double getWealth()           { return wealth; }
+        double getBidPrice() const         { return bid; }
+        double getAskPrice() const         { return ask; }
+        double getSpread() const           { return spread; }
+        double getStockPrice() const       { return price; }
+        double getReservationPrice() const { return reservationPrice; }
+        double getQuantity() const         { return quantity; }
+        double getWealth() const           { return wealth; }
 
     private:
         double          price;              // current stock price.

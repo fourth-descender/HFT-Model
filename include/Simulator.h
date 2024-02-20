@@ -18,14 +18,14 @@ class Simulator
         void run();
 
         // getter methods.
-        std::vector<double> getBidPrices();
-        std::vector<double> getAskPrices();
-        std::vector<double> getSpreads();
-        std::vector<double> getStockPrices();
-        std::vector<double> getReservationPrices();
-        std::vector<double> getQuantities();
-        std::vector<double> getWealths();
-        std::vector<double> getProfits();
+        std::vector<double> getBidPrices() const;
+        std::vector<double> getAskPrices() const;
+        std::vector<double> getSpreads() const;
+        std::vector<double> getStockPrices() const;
+        std::vector<double> getReservationPrices() const;
+        std::vector<double> getQuantities() const;
+        std::vector<double> getWealths() const;
+        std::vector<double> getProfits() const;
 
     private:
         void simulate();
