@@ -7,7 +7,7 @@ import seaborn as sns
 data = pd.read_csv('plot/points.csv')
 
 # create a new array for the x-values.
-x_values = np.linspace(0.1, 1, len(data['StockPrices']))
+x_values = np.linspace(0.1, 1, len(data['StockMidPrices']))
 
 # use a style for the plot.
 sns.set_style('darkgrid')  # use seaborn-darkgrid style
@@ -18,7 +18,7 @@ plt.figure(figsize=(10, 6))
 # plot the data with increased line width.
 plt.plot(x_values, data['AskPrices'], label='Ask Prices', color='red', linewidth=2)
 plt.plot(x_values, data['BidPrices'], label='Bid Prices', color='green', linewidth=2)
-plt.plot(x_values, data['StockPrices'], label='Stock Prices', color='blue', linewidth=2)
+plt.plot(x_values, data['StockMidPrices'], label='Stock MidPrices', color='blue', linewidth=2)
 
 # add labels and title.
 plt.xlabel('Time', fontsize=14)

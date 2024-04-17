@@ -1,6 +1,9 @@
 #include <Statistics.h>
+#include <cmath>
+#include <iostream>
 
-void calculateAndPrintStatistics(const Simulator& s) {
+void calculateAndPrintStatistics(const Simulator &s)
+{
     // fetch the data from the simulator.
     std::vector<double> spreads = s.getSpreads();
     std::vector<double> profits = s.getProfits();
@@ -14,12 +17,16 @@ void calculateAndPrintStatistics(const Simulator& s) {
 
     double meanProfit = averageProfit; // this is the same as average profit.
 
-    double stdDevProfit = std::sqrt(std::inner_product(profits.begin(), profits.end(), profits.begin(), 0.0) / profits.size() - meanProfit * meanProfit);
+    double stdDevProfit =
+        std::sqrt(std::inner_product(profits.begin(), profits.end(), profits.begin(), 0.0) / profits.size() -
+                  meanProfit * meanProfit);
     std::cout << "Standard deviation of profit: " << stdDevProfit << std::endl;
 
     double averageQuantity = std::accumulate(quantities.begin(), quantities.end(), 0.0) / quantities.size();
     std::cout << "Average quantity: " << averageQuantity << std::endl;
 
-    double stdDevQuantity = std::sqrt(std::inner_product(quantities.begin(), quantities.end(), quantities.begin(), 0.0) / quantities.size() - averageQuantity * averageQuantity);
+    double stdDevQuantity = std::sqrt(
+        std::inner_product(quantities.begin(), quantities.end(), quantities.begin(), 0.0) / quantities.size() -
+        averageQuantity * averageQuantity);
     std::cout << "Standard deviation of quantity: " << stdDevQuantity << std::endl;
 }

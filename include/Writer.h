@@ -3,8 +3,7 @@
 #define WRITER_H
 
 #include <Simulator.h>
-#include <fstream>
 
-void writeDataToCSV(const Simulator& s, const parameters& p);
+void writeDataToCSV(const Simulator &s, const model::parameters &p);
 
 #endif // WRITER_H

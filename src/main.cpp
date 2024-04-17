@@ -1,10 +1,12 @@
-#include <Simulator.h>
 #include <Parameters.h>
+#include <Simulator.h>
 #include <Statistics.h>
 #include <Writer.h>
+#include <Plotter.h>
 
-int main() {
-    parameters p = initializeParameters();
+int main()
+{
+    model::parameters p = model::initializeParameters();
 
     // simulates order arrivals.
     PoissonArrival arrivals(p);
@@ -12,6 +14,7 @@ int main() {
     Simulator s(p, arrivals, NUMBER_OF_SIMULATIONS);
     s.run();
 
+    model::plot(s);
     calculateAndPrintStatistics(s);
     writeDataToCSV(s, p);
 }
