@@ -14,6 +14,8 @@ using V_PRICES = std::vector<PRICES>;
 
 void gnuHelper(Gnuplot &gp)
 {
+    gp << "set terminal qt enhanced font 'SpaceMono Nerd Font Propo,12'\n";
+    gp << "set grid\n";
     gp << "set xlabel 'Time'\n";
     gp << "set ylabel 'Price'\n";
     gp << "plot '-' with lines title 'Bid Prices', '-' with lines title 'Ask Prices', '-' with lines title 'Stock Mid "
@@ -38,5 +40,7 @@ void plot(const Simulator &s, const model::parameters &p)
         PRICES lastPrices(price.end() - p.N, price.end());
         gp.send1d(std::make_tuple(times, lastPrices));
     }
+
+    gp << "pause mouse close\n";
 }
 } // namespace model
