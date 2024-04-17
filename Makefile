@@ -1,6 +1,6 @@
 .PHONY: all configure build run plot clean
 
-all: configure build run plot
+all: configure build run
 
 configure:
 	cmake -S . -B build
@@ -10,9 +10,6 @@ build:
 
 run:
 	build/bin/MarketMaker
-
-plot:
-	python3 plot.py
 
 clean:
 	rm -rf build

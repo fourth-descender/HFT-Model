@@ -4,34 +4,37 @@
 
 namespace model
 {
-void plot(const Simulator &s)
+TIMESTAMPS generateTimestamps(const model::parameters &p)
 {
-    using PRICES = const std::vector<double> &;
-    using TIMESTAMPS = std::vector<double>;
+    TIMESTAMPS times(p.N);
+    std::iota(times.begin(), times.end(), 0);
+    return times;
+}
 
+PRICES getLastNPrices(const PRICES &prices, const model::parameters &p)
+{
+    return PRICES(prices.end() - p.N, prices.end());
+}
+
+void plot(const Simulator &s, const model::parameters &p)
+{
     PRICES bids = s.getBidPrices();
     PRICES asks = s.getAskPrices();
     PRICES stockMidPrices = s.getStockMidPrices();
 
-    // Normalize x-axis values to range from 0 to 1
-    TIMESTAMPS times;
-    for (size_t i = 0; i < bids.size(); ++i)
-    {
-        double normalized_x = static_cast<double>(i) / (bids.size() - 1);
-        times.push_back(normalized_x);
-    }
+    TIMESTAMPS times = generateTimestamps(p);
 
-    // Create a Gnuplot object
+    PRICES lastNBids = getLastNPrices(bids, p);
+    PRICES lastNAsks = getLastNPrices(asks, p);
+    PRICES lastNStockMidPrices = getLastNPrices(stockMidPrices, p);
+
     Gnuplot gp;
-
-    // Plot the data
-    gp << "set title 'Bid, Ask, and Stock Mid Prices'\n";
     gp << "set xlabel 'Time'\n";
     gp << "set ylabel 'Price'\n";
-    gp << "plot '-' with linespoints title 'Bids', '-' with linespoints title 'Asks', '-' with linespoints title "
-          "'Stock Mid Prices'\n";
-    gp.send1d(std::make_tuple(times, bids));
-    gp.send1d(std::make_tuple(times, asks));
-    gp.send1d(std::make_tuple(times, stockMidPrices));
+    gp << "plot '-' with lines title 'Bid Prices', '-' with lines title 'Ask Prices', '-' with lines title 'Stock Mid "
+          "Prices'\n";
+    gp.send1d(std::make_tuple(times, lastNBids));
+    gp.send1d(std::make_tuple(times, lastNAsks));
+    gp.send1d(std::make_tuple(times, lastNStockMidPrices));
 }
 } // namespace model

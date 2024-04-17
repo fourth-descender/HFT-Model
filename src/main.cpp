@@ -1,8 +1,8 @@
 #include <Parameters.h>
+#include <Plotter.h>
 #include <Simulator.h>
 #include <Statistics.h>
-#include <Writer.h>
-#include <Plotter.h>
+// #include <Writer.h>
 
 int main()
 {
@@ -14,7 +14,7 @@ int main()
     Simulator s(p, arrivals, NUMBER_OF_SIMULATIONS);
     s.run();
 
-    model::plot(s);
     calculateAndPrintStatistics(s);
-    writeDataToCSV(s, p);
+    // writeDataToCSV(s, p);
+    model::plot(s, p);
 }
