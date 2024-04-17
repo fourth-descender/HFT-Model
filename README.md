@@ -7,7 +7,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 Before you begin, ensure you have met the following requirements:
 
-* You have installed the latest version of Python and CMake.
+* You have installed the latest version of CMake.
+* You have installed the boost library (minimum required version is 1.76.0)
+* You have the gnuplot program installed (with qt terminal support)
 * You have a `<Windows/Linux/Mac>` machine. State which OS is supported/which is not.
 
 ### Installing and Running
