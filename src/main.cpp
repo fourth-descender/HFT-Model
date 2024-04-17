@@ -2,7 +2,6 @@
 #include <Plotter.h>
 #include <Simulator.h>
 #include <Statistics.h>
-// #include <Writer.h>
 
 int main()
 {
@@ -15,6 +14,5 @@ int main()
     s.run();
 
     calculateAndPrintStatistics(s);
-    // writeDataToCSV(s, p);
     model::plot(s, p);
 }

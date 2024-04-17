@@ -8,6 +8,7 @@
 
 namespace model
 {
+
 struct parameters
 {
     double k;     // intensity
@@ -33,7 +34,9 @@ struct parameters
     double dt; // time step
     double N;  // number of time steps
 };
+
 parameters initializeParameters();
+
 } // namespace model
 
 #endif // PARAMETERS_H

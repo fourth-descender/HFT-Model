@@ -1,40 +1,42 @@
 #include <Plotter.h>
 #include <Simulator.h>
+#include <algorithm>
 #include <gnuplot-iostream.h>
+#include <numeric>
+#include <tuple>
+#include <vector>
 
 namespace model
 {
-TIMESTAMPS generateTimestamps(const model::parameters &p)
+using PRICES = std::vector<double>;
+using TIMESTAMPS = std::vector<double>;
+using V_PRICES = std::vector<PRICES>;
+
+void gnuHelper(Gnuplot &gp)
 {
-    TIMESTAMPS times(p.N);
-    std::iota(times.begin(), times.end(), 0);
-    return times;
-}
-
-PRICES getLastNPrices(const PRICES &prices, const model::parameters &p)
-{
-    return PRICES(prices.end() - p.N, prices.end());
-}
-
-void plot(const Simulator &s, const model::parameters &p)
-{
-    PRICES bids = s.getBidPrices();
-    PRICES asks = s.getAskPrices();
-    PRICES stockMidPrices = s.getStockMidPrices();
-
-    TIMESTAMPS times = generateTimestamps(p);
-
-    PRICES lastNBids = getLastNPrices(bids, p);
-    PRICES lastNAsks = getLastNPrices(asks, p);
-    PRICES lastNStockMidPrices = getLastNPrices(stockMidPrices, p);
-
-    Gnuplot gp;
     gp << "set xlabel 'Time'\n";
     gp << "set ylabel 'Price'\n";
     gp << "plot '-' with lines title 'Bid Prices', '-' with lines title 'Ask Prices', '-' with lines title 'Stock Mid "
           "Prices'\n";
-    gp.send1d(std::make_tuple(times, lastNBids));
-    gp.send1d(std::make_tuple(times, lastNAsks));
-    gp.send1d(std::make_tuple(times, lastNStockMidPrices));
+}
+
+void plot(const Simulator &s, const model::parameters &p)
+{
+    // prices to plot.
+    V_PRICES prices = {s.getBidPrices(), s.getAskPrices(), s.getStockMidPrices()};
+
+    // time stamps for the x-axis.
+    TIMESTAMPS times(p.N);
+    std::iota(times.begin(), times.end(), 0);
+    std::for_each(times.begin(), times.end(), [&p](double &n) { n /= (p.N - 1); });
+
+    Gnuplot gp;
+    gnuHelper(gp);
+    for (const PRICES &price : prices)
+    {
+        // cut off the last N prices.
+        PRICES lastPrices(price.end() - p.N, price.end());
+        gp.send1d(std::make_tuple(times, lastPrices));
+    }
 }
 } // namespace model

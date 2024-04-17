@@ -6,7 +6,6 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Simulator.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Simulation.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Statistic.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Writer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Plotter.cpp
 )
 
