@@ -1,6 +1,7 @@
 #include <Statistics.h>
 #include <cmath>
 #include <iostream>
+#include <numeric>
 
 void calculateAndPrintStatistics(const Simulator &s)
 {

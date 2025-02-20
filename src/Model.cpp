@@ -2,8 +2,6 @@
 
 namespace model::formulas
 {
-std::random_device rd;
-std::mt19937 gen(rd());
 
 double getNewStockMidPrice(const model::parameters &p, double price, double t)
 {
@@ -12,7 +10,8 @@ double getNewStockMidPrice(const model::parameters &p, double price, double t)
     // dW_t can be approximated by a normal random variable,
     // with mean 0 and variance delta_t, as it is normally distributed.
     // hence, S_{t + delta_t} = S_t + sigma * N(0, delta_t).
-    std::normal_distribution<double> d(0, 1);
+    static thread_local std::mt19937 gen(std::random_device{}());
+    static thread_local std::normal_distribution<double> d(0, 1);
     return price + p.sigma * (d(gen) * sqrt(p.dt));
 }
 
